@@ -1,0 +1,9 @@
+# package
+package.json
+pnpm-lock.yaml
+
+# dependencies & devDependencies
+node_modules/
+package-lock.json
+
+.DS_Store
