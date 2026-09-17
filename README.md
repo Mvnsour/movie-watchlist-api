@@ -1,4 +1,4 @@
-# Backend API — Node.js, Express, JWT, Prisma, PostgreSQL
+# Movie Watchlist API with Node.js, Express, JWT, Prisma & PostgreSQL
 
 **🇬🇧 [English](#english) | 🇫🇷 [Français](#français)**
 
@@ -8,16 +8,16 @@
 
 A complete REST API featuring user authentication, movie management, and a personal watchlist system.
 
-### 🚀 Overview
+### Overview
 
 This project implements:
 1. **User Authentication** — registration, login, JWT-based sessions
 2. **Movie Management** — full CRUD operations
 3. **Watchlist** — status tracking and ratings for saved movies
 
-### ⚙️ Tech Stack
+### Tech Stack
 
-- **Node.js** — JavaScript runtime
+- **Node.js** (v18+) — JavaScript runtime, ES modules
 - **Express.js** — web framework
 - **JWT** — authentication & authorization
 - **Prisma** — ORM
@@ -25,8 +25,10 @@ This project implements:
 - **Zod** — schema validation
 - **bcryptjs** — password hashing
 - **dotenv** — environment variable management
+- **pnpm** — package manager
+- **nodemon** — dev server with auto-reload
 
-### 📋 Features
+### Features
 
 **Authentication**
 - User registration with validation
@@ -51,10 +53,11 @@ This project implements:
 - JWT middleware on protected routes
 - Prisma migrations and seeding
 
-### 👌 Getting Started
+### Getting Started
 
 **Prerequisites**
-- Node.js v18+ (v22.x recommended if using Prisma v7)
+- Node.js v18+
+- pnpm
 - PostgreSQL v14+
 - Git
 
@@ -62,8 +65,8 @@ This project implements:
 
 ```bash
 git clone <your-repo-url>
-cd <project-name>
-npm install
+cd movie-watchlist-api
+pnpm install
 ```
 
 Create a `.env` file at the project root:
@@ -77,21 +80,25 @@ PORT=5001
 Set up the database:
 
 ```bash
-npx prisma migrate dev
-npm run seed:movies   # optional
+pnpm exec prisma migrate dev
+pnpm run seed:movies   # optional
 ```
 
-Start the dev server:
+Start the dev server (nodemon):
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 The API will be available at `http://localhost:5001`.
 
-> ⚠️ **Prisma v7 note**: this project can run on either Prisma v6 or v7. Prisma v7 is ESM-only and requires: `"type": "module"` in `package.json`, the `provider = "prisma-client"` generator, a `prisma.config.ts` file, the `@prisma/adapter-pg` driver adapter, and manually loading `.env` with `import "dotenv/config"`. Check the Prisma docs for full migration details.
+**Project structure**
+- Entry point: `src/server.js`
+- Prisma config: `src/config/db.js`
 
-### 🔌 API Endpoints
+> ⚠️ **Prisma v7 note**: if you upgrade to Prisma v7 (ESM-only), you'll need: the `provider = "prisma-client"` generator, a `prisma.config.ts` file, the `@prisma/adapter-pg` driver adapter, and manually loading `.env` with `import "dotenv/config"`. Check the Prisma docs for full migration details.
+
+### API Endpoints
 
 **Auth**
 - `POST /auth/register`
@@ -109,7 +116,7 @@ The API will be available at `http://localhost:5001`.
 - `PUT /watchlist/:id`
 - `DELETE /watchlist/:id`
 
-### 🗄️ Data Models
+### Data Models
 
 **User**: id, name, email, password (hashed), createdAt
 
@@ -117,11 +124,11 @@ The API will be available at `http://localhost:5001`.
 
 **WatchlistItem**: id, userId, movieId, status, rating, notes, createdAt, updatedAt
 
-### ☁️ Deployment
+### Deployment
 
 Can be deployed on Railway, Render, Heroku, DigitalOcean App Platform, or AWS.
 
-### 📚 Resources
+### Resources
 
 - [Node.js docs](https://nodejs.org/docs)
 - [Express.js docs](https://expressjs.com/)
@@ -136,16 +143,16 @@ Can be deployed on Railway, Render, Heroku, DigitalOcean App Platform, or AWS.
 
 Une API REST complète avec authentification utilisateur, gestion de films et système de watchlist personnelle.
 
-### 🚀 Présentation
+### Présentation
 
 Ce projet implémente :
 1. **Authentification utilisateur** — inscription, connexion, sessions basées sur JWT
 2. **Gestion de films** — CRUD complet
 3. **Watchlist** — suivi de statut et notation des films enregistrés
 
-### ⚙️ Stack technique
+### Stack technique
 
-- **Node.js** — runtime JavaScript
+- **Node.js** (v18+) — runtime JavaScript, modules ES
 - **Express.js** — framework web
 - **JWT** — authentification et autorisation
 - **Prisma** — ORM
@@ -153,8 +160,10 @@ Ce projet implémente :
 - **Zod** — validation de schémas
 - **bcryptjs** — hachage des mots de passe
 - **dotenv** — gestion des variables d'environnement
+- **pnpm** — gestionnaire de paquets
+- **nodemon** — serveur de dev avec rechargement auto
 
-### 📋 Fonctionnalités
+### Fonctionnalités
 
 **Authentification**
 - Inscription avec validation
@@ -179,10 +188,11 @@ Ce projet implémente :
 - Middleware JWT sur les routes protégées
 - Migrations et seed Prisma
 
-### 👌 Démarrage
+### Démarrage
 
 **Prérequis**
-- Node.js v18+ (v22.x recommandé avec Prisma v7)
+- Node.js v18+
+- pnpm
 - PostgreSQL v14+
 - Git
 
@@ -190,8 +200,8 @@ Ce projet implémente :
 
 ```bash
 git clone <url-de-ton-repo>
-cd <nom-du-projet>
-npm install
+cd movie-watchlist-api
+pnpm install
 ```
 
 Créer un fichier `.env` à la racine :
@@ -205,21 +215,25 @@ PORT=5001
 Initialiser la base de données :
 
 ```bash
-npx prisma migrate dev
-npm run seed:movies   # optionnel
+pnpm exec prisma migrate dev
+pnpm run seed:movies   # optionnel
 ```
 
-Lancer le serveur de dev :
+Lancer le serveur de dev (nodemon) :
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 L'API est disponible sur `http://localhost:5001`.
 
-> ⚠️ **Note Prisma v7** : ce projet fonctionne aussi bien avec Prisma v6 qu'avec Prisma v7. Prisma v7 est ESM-only et nécessite : `"type": "module"` dans `package.json`, le générateur `provider = "prisma-client"`, un fichier `prisma.config.ts`, l'adaptateur `@prisma/adapter-pg`, et le chargement manuel de `.env` via `import "dotenv/config"`. Voir la doc Prisma pour le détail complet.
+**Structure du projet**
+- Point d'entrée : `src/server.js`
+- Config Prisma : `src/config/db.js`
 
-### 🔌 Endpoints API
+> ⚠️ **Note Prisma v7** : en cas de passage à Prisma v7 (ESM-only), il faudra : le générateur `provider = "prisma-client"`, un fichier `prisma.config.ts`, l'adaptateur `@prisma/adapter-pg`, et le chargement manuel de `.env` via `import "dotenv/config"`. Voir la doc Prisma pour le détail complet.
+
+### Endpoints API
 
 **Auth**
 - `POST /auth/register`
@@ -237,7 +251,7 @@ L'API est disponible sur `http://localhost:5001`.
 - `PUT /watchlist/:id`
 - `DELETE /watchlist/:id`
 
-### 🗄️ Modèles de données
+### Modèles de données
 
 **User** : id, name, email, password (hashé), createdAt
 
@@ -245,11 +259,11 @@ L'API est disponible sur `http://localhost:5001`.
 
 **WatchlistItem** : id, userId, movieId, status, rating, notes, createdAt, updatedAt
 
-### ☁️ Déploiement
+### Déploiement
 
 Déployable sur Railway, Render, Heroku, DigitalOcean App Platform ou AWS.
 
-### 📚 Ressources
+### Ressources
 
 - [Documentation Node.js](https://nodejs.org/docs)
 - [Documentation Express.js](https://expressjs.com/)
